@@ -12,7 +12,10 @@
         echo '<pre>'.print_r($pdo->errorInfo(), true).'</pre>';
         exit;
     }
-    $resListStu = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+    else
+    {
+        $resListStu = $pdoStatement->fetchAll(PDO::FETCH_ASSOC);
+    }
 
 
     // At the End I display stuff

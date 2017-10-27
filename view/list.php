@@ -1,7 +1,4 @@
-<?php
-    if (isset($resListStu) && !empty($resListStu))
-    {
-        ?>
+<?php if (isset($resListStu) && !empty($resListStu)) { ?>
             <table>
             <tr>
                 <th>Student ID</th>
@@ -11,24 +8,15 @@
                 <th>Student Birthdate</th>
                 <th>About Student</th>
             </tr>
-        <?php
-        foreach ($resListStu as $k => $v)
-        {
-            ?>
+        <?php foreach ($resListStu as $k => $v) { ?>
                 <tr>
                     <td><?= $v['stu_id'] ?></td>
-                    <td><?= $v['stu_lastname'] ?></td>
-                    <td><?= $v['stu_firstname'] ?></td>
+                    <td><?= htmlentities($v['stu_lastname']) ?></td>
+                    <td><?= htmlentities($v['stu_firstname']) ?></td>
                     <td><?= $v['stu_email'] ?></td>
                     <td><?= $v['stu_birthdate'] ?></td>
-                    <td><a href='./student.php?link2Stu=<?= $v['stu_id'] ?>'>Details</a></td>
+                    <td><a href='./student.php?id2stu=<?= $v['stu_id'] ?>'>Details</a></td>
                 </tr>
-            <?php
-        }
-        echo '</table>';
-    }
-    else
-    {
-        echo 'Variable empty.<br>';
-    }
-?>
+            <?php } ?>
+        </table>
+    <?php } else { echo 'Variable empty.<br>'; } ?>

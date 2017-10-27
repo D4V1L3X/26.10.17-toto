@@ -54,6 +54,9 @@
             td {
                 background-color: #CCC;
             }
+            form label input {
+                width: 300px;
+            }
         </style>
     </head>
     <body>
