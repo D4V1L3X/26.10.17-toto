@@ -42,51 +42,86 @@
 
 
 
+    // The following line does not really need commenting
     if (isset($_POST['submitNewStudent']))
     {
-        echo '<pre>' . print_r($_POST, true) . '</pre>';
-        // I and semi P
-        $nStuLastname = filter_var($_POST['nStuLastname'], FILTER_SANITIZE_STRING);;
-        $nStuFirstname = filter_var($_POST['nStuFirstname'], FILTER_SANITIZE_STRING);
-        $nStuBirthdate = date("d/m/Y", strtotime($_POST['nStuBirthdate'])) == $_POST['nStuBirthdate'] ? $_POST['nStuBirthdate'] : false ;
-        $nStuEmail = filter_var(filter_var($_POST['nStuEmail'], FILTER_SANITIZE_EMAIL), FILTER_VALIDATE_EMAIL);
-        $nStuFriendliness = $_POST['nStuFriendliness'];
-        $nStuSession = $_POST['nStuSession'];
-        $nStuCity = $_POST['nStuCity'];
 
-        // P (valid)
+        // INPUT and some Processing
 
+        $nStuLastname = filter_var(strtoupper($_POST['nStuLastname']), FILTER_SANITIZE_STRING);
+        $nStuFirstname = filter_var(ucfirst($_POST['nStuFirstname']), FILTER_SANITIZE_STRING);
+        $nStuBirthdate = date('Y-m-d', strtotime("{$_POST['nStuBirthdateY']}-{$_POST['nStuBirthdateM']}-{$_POST['nStuBirthdateD']}"));
+        $nStuEmail = filter_var($_POST['nStuEmail'], FILTER_SANITIZE_EMAIL);
+        $nStuFriendliness = intval($_POST['nStuFriendliness']);
+        $nStuSession = intval($_POST['nStuSession']);
+        $nStuCity = intval($_POST['nStuCity']);
 
+        // PROCESSING and validation
+            // https://stackoverflow.com/questions/11405493/how-to-get-everything-after-a-certain-character
+            // substr('233718_This_is_a_string', (strpos('233718_This_is_a_string', '_') ?: -1) + 1); // Returns This_is_a_string
+            // explode('_', '233718_This_is_a_string', 2)[1]; // Returns This_is_a_string
 
-
-
-
-
-
-        /*
-        $sql = "
-            SELECT *
-            FROM student
-            WHERE stu_lastname = :stuLastname AND stu_firstname = :stuFirstname
-        ";
-        $pdoStatement = $pdo->prepare($sql);
-        $pdoStatement -> bindValue( ':stuLastname', $newStudentLastname, PDO::PARAM_STR);
-        $pdoStatement -> bindValue( ':stuFirstname', $newStudentFirstname, PDO::PARAM_STR);
-        $execQuery = $pdoStatement -> execute();
-        if ($execQuery === false)
+        if (strlen($nStuLastname) < 3 || strlen($nStuFirstname) < 3 || get_headers('http://' . substr($nStuEmail, strpos($nStuEmail, "@")+1 )) === false) // if invalid
         {
-            echo '<pre>' . print_r($pdoStatement->errorInfo(), true) . '</pre>';
-            exit;
-        }
-        elseif ($execQuery === true)
-        {
-            $_POST['newStudent'] = true;
-            $result = $pdoStatement -> fetch(PDO::FETCH_ASSOC);
-            header("Location: http://onyx.lu/fit4coding/26.10.17-toto/public/student.php?id2stu=" . $result['stu_id']);
-            exit;
-        }
-        */
+            $formInvalid = [];
+            $formInvalid['state'] = true;
+            $formInvalid['lastnameError'] = (strlen($nStuLastname) < 3) ? true : false ;
+            $formInvalid['firstnameError'] = (strlen($nStuFirstname) < 3) ? true : false;
+            $formInvalid['emailError'] = (get_headers('http://' . substr($nStuEmail, strpos($nStuEmail, "@")+1 )) === false) ? true : false;
 
+            $_POST['nStuLastname'] = $nStuLastname;
+            $_POST['nStuFirstname'] = $nStuFirstname;
+            $_POST['nStuBirthdateY'] = $_POST['nStuBirthdateY'];
+            $_POST['nStuBirthdateM'] = $_POST['nStuBirthdateM'];
+            $_POST['nStuBirthdateD'] = $_POST['nStuBirthdateD'];
+            $_POST['nStuEmail'] = $nStuEmail;
+            $_POST['nStuFriendliness'] = $nStuFriendliness;
+            $_POST['nStuSession'] = $nStuSession;
+            $_POST['nStuCity'] = $nStuCity;
+        }
+        else // if valid
+        {
+            $sql = '
+                INSERT INTO student (stu_lastname, stu_firstname, stu_birthdate, stu_email, stu_friendliness, session_ses_id, city_cit_id)
+                VALUES (:stuLastname, :stuFirstname, :stuBirthdate, :stuEmail, :stuFriendliness, :stuSession, :stuCity)
+            ';
+            $pdoStatement = $pdo ->prepare($sql);
+            $pdoStatement -> bindValue( ':stuLastname', $nStuLastname, PDO::PARAM_STR);
+            $pdoStatement -> bindValue( ':stuFirstname', $nStuFirstname, PDO::PARAM_STR);
+            $pdoStatement -> bindValue( ':stuBirthdate', $nStuBirthdate, PDO::PARAM_STR);
+            $pdoStatement -> bindValue( ':stuEmail', $nStuEmail, PDO::PARAM_STR);
+            $pdoStatement -> bindValue( ':stuFriendliness', $nStuFriendliness, PDO::PARAM_INT);
+            $pdoStatement -> bindValue( ':stuSession', $nStuSession, PDO::PARAM_INT);
+            $pdoStatement -> bindValue( ':stuCity', $nStuCity, PDO::PARAM_INT);
+            $execQuery = $pdoStatement -> execute();
+            if ($execQuery === false)
+            {
+                echo '<pre>' . print_r($pdoStatement->errorInfo(), true) . '</pre>';
+                exit;
+            }
+            elseif ($execQuery === true)
+            {
+                $sql = "
+                    SELECT *
+                    FROM student
+                    WHERE stu_email = :stuEmail
+                ";
+                $pdoStatement = $pdo->prepare($sql);
+                $pdoStatement -> bindValue( ':stuEmail', $nStuEmail, PDO::PARAM_STR);
+                $execQuery = $pdoStatement -> execute();
+                if ($execQuery === false)
+                {
+                    echo '<pre>' . print_r($pdoStatement->errorInfo(), true) . '</pre>';
+                    exit;
+                }
+                elseif ($execQuery === true)
+                {
+                    $result = $pdoStatement -> fetch(PDO::FETCH_ASSOC);
+                    header("Location: http://onyx.lu/fit4coding/26.10.17-toto/public/student.php?id2stu=" . $result['stu_id']);
+                    exit;
+                }
+            }
+        }
     }
 
     // At the End I display stuff
