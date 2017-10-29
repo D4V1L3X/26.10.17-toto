@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
     <head>
         <title>26.10.2017 - Toto Project</title>
         <style>
@@ -54,8 +54,14 @@
             td {
                 background-color: #CCC;
             }
-            form label input {
+            form {
+                width: 400px;
+            }
+            form fieldset label input {
                 width: 300px;
+            }
+            form fieldset#RadioButtonInput label input {
+                width: 20px;
             }
         </style>
     </head>
