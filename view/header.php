@@ -6,6 +6,9 @@
         <style>
             body {
                 font-family: sans-serif;
+
+                display: flex;
+                justify-content: center;
             }
             ul {
                 list-style-type: none;
@@ -67,6 +70,32 @@
                 font-size: .8rem;
                 color: red;
                 text-shadow: #000 0 0 8px;
+            }
+            #list-btns-container {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin: 1rem 0 0 0;
+            }
+            #list-btns-container form {
+                width: 200px;
+                margin: 0 .5rem;
+            }
+            #left-btn-prev, #right-btn-next {
+                padding: 1rem 0;
+                width: 200px;
+                font-size: 1rem;
+                border-radius: .6rem;
+                background-color: #06B;
+                border: none;
+            }
+            #left-btn-prev:hover, #right-btn-next:hover {
+                background-color: blue;
+                color: white;
+            }
+            #left-btn-prev:active, #right-btn-next:active {
+                background-color: black;
+                color: white;
             }
         </style>
         <script>
@@ -195,12 +224,13 @@
         </script>
     </head>
     <body>
-        <header></header>
-        <nav>
-            <ul>
-                <li><a href="./index.php">Home</a></li>
-                <li><a href="./index.php">All the sessions</a></li>
-                <li><a href="./list.php">All students</a></li>
-                <li><a href="./add.php">Add a student</a></li>
-            </ul>
-        </nav>
+        <div id="flex-container">
+            <header></header>
+            <nav>
+                <ul>
+                    <li><a href="./index.php">Home</a></li>
+                    <li><a href="./index.php">All the sessions</a></li>
+                    <li><a href="./list.php">All students</a></li>
+                    <li><a href="./add.php">Add a student</a></li>
+                </ul>
+            </nav>
