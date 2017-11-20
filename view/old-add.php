@@ -5,12 +5,12 @@
                 <label>
                     Lastname:<br>
                     <input type='text' name="nStuLastname" placeholder='Doe' <?= isset($formInvalid) ? "value='{$_POST['nStuLastname']}'" : ''; ?> required>
-                    <br><span id="lNameError" class="nStuError">Lastname must be at least 3 characters long</span>
+                    <?= isset($formInvalid) && $formInvalid['lastnameError'] === true ? '<br><span id="lNameError" class="error">Lastname must be at least 3 characters long</span>' : ''; ?>
                 </label><br><br>
                 <label>
                     Firstname:<br>
                     <input type='text' name="nStuFirstname" placeholder='John' <?= isset($formInvalid) ? "value='{$_POST['nStuFirstname']}'" : ''; ?> required>
-                    <br><span id="fNameError" class="nStuError">Firstname must be at least 3 characters long</span>
+                    <?= isset($formInvalid) && $formInvalid['firstnameError'] === true ? '<br><span id="fNameError" class="error">Firstname must be at least 3 characters long</span>' : ''; ?>
                 </label><br><br>
                 <label>
                     Birthdate:<br>
@@ -21,7 +21,7 @@
                 <label>
                     Email:<br>
                     <input type='text' name="nStuEmail" placeholder='john.doe@example.com' <?= isset($formInvalid) ? "value='{$_POST['nStuEmail']}'" : ''; ?> required>
-                    <br><span id="emailError" class="nStuError">You entered an invalid email</span>
+                    <?= isset($formInvalid) && $formInvalid['emailError'] === true ? '<br><span id="emailError" class="error">You entered an invalid email</span>' : ''; ?>
                 </label><br><br>
                 <fieldset id="RadioButtonInput">
                     <legend>Friendliness</legend>
@@ -64,7 +64,6 @@
                 <input type="submit" name="submitNewStudent" value="Submit !">
             </fieldset>
         </form>
-        <div id="popupStudent"></div>
         <script type="text/javascript">
             years();
             months();

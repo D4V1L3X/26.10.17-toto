@@ -2,109 +2,18 @@
 
 <html lang="en">
     <head>
+        <meta charset="UTF-8">
         <title>26.10.2017 - Toto Project</title>
-        <style>
-            body {
-                font-family: sans-serif;
-
-                display: flex;
-                justify-content: center;
-            }
-            ul {
-                list-style-type: none;
-            }
-            ul li {
-                display: inline-block;
-                margin-right: 10px;
-                padding: 0;
-                width: 212px;
-            }
-            ul li a {
-                text-decoration: none;
-                color: #000;
-                border: 1px solid #000;
-                padding: 5px;
-
-                text-align: center;
-                display: block;
-                width: 200px;
-            }
-            ul li a:hover, th a:hover {
-                background-color: #000;
-                color: #FFF;
-            }
-            ul li a:hover {
-                color: #F00;
-            }
-            table {
-                border: 2px solid black;
-            }
-            th {
-                background-color: #888;
-            }
-            table th {
-                padding: 5px 0;
-            }
-            table th, th, td {
-                padding: 5px 15px;
-            }
-            table th a {
-                padding: 5px 70px;
-
-                color: #000;
-                text-decoration: none;
-            }
-            td {
-                background-color: #CCC;
-            }
-            form {
-                width: 400px;
-            }
-            form fieldset label input {
-                width: 300px;
-            }
-            form fieldset#RadioButtonInput label input {
-                width: 20px;
-            }
-            form fieldset label span.error {
-                font-size: .8rem;
-                color: red;
-                text-shadow: #000 0 0 8px;
-            }
-            #list-btns-container {
-                width: 100%;
-                display: flex;
-                justify-content: center;
-                margin: 1rem 0 0 0;
-            }
-            #list-btns-container form {
-                width: 200px;
-                margin: 0 .5rem;
-            }
-            #left-btn-prev, #right-btn-next {
-                padding: 1rem 0;
-                width: 200px;
-                font-size: 1rem;
-                border-radius: .6rem;
-                background-color: #06B;
-                border: none;
-            }
-            #left-btn-prev:hover, #right-btn-next:hover {
-                background-color: blue;
-                color: white;
-            }
-            #left-btn-prev:active, #right-btn-next:active {
-                background-color: black;
-                color: white;
-            }
-        </style>
+        <link rel="stylesheet" href="./css/styles.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
+        <script src="./js/scripts.js" type="text/javascript"></script>
         <script>
             function years()
             {
                 //I
                 var years = document.getElementById("years");
                 var thisYear = (new Date()).getFullYear();
-                var max = thisYear-50;
+                var max = thisYear-30;
                 var output = "<option <?= isset($formInvalid) && !empty($_POST['nStuBirthdateY']) ? '' : 'selected' ; ?> disabled>-- Year --</option>";
 
                 var selected = '';
@@ -121,15 +30,17 @@
                         selected = '';
                     }
                     <?php } ?>
-                    output += "<option value='" + i +"'" + selected + ">" + i +"</option>";
+                    output += "<option value='" + i + "'" + selected + ">" + i + "</option>";
                 }
                 //O
                 years.innerHTML= output;
             }
+
             function months()
             {
                 //I
                 var month = document.getElementById("months");
+                output += "<option value='" + i +"'" + selected + ">" + i +"</option>";
                 var max = 12;
                 var output = "<option <?= isset($formInvalid) && !empty($_POST['nStuBirthdateM']) ? '' : 'selected' ; ?> disabled>-- Month --</option>";
 
@@ -152,6 +63,7 @@
                 //O
                 month.innerHTML= output;
             }
+
             function days(max)
             {
                 //I
@@ -183,10 +95,12 @@
                 //O
                 days.innerHTML= output;
             }
+
             function isLeapYear(year)
             {
                 return ((year%400===0)||((year%4===0)&&(year%100!==0)));
             }
+
             function howManyDays()
             {
                 //I
@@ -219,7 +133,6 @@
                     days(0);
                 }
                 //O
-
             }
         </script>
     </head>
