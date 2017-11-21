@@ -1,0 +1,111 @@
+body {
+    font-family: sans-serif;
+
+    display: flex;
+    justify-content: center;
+}
+ul {
+    list-style-type: none;
+}
+ul li {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 0;
+    width: 212px;
+}
+ul li a {
+    text-decoration: none;
+    color: #000;
+    border: 1px solid #000;
+    padding: 5px;
+
+    text-align: center;
+    display: block;
+    width: 200px;
+}
+ul li a:hover, th a:hover {
+    background-color: #000;
+    color: #FFF;
+}
+ul li a:hover {
+    color: #F00;
+}
+table {
+    border: 2px solid black;
+}
+th {
+    background-color: #888;
+}
+table th {
+    padding: 5px 0;
+}
+table th, th, td {
+    padding: 5px 15px;
+}
+table th a {
+    padding: 5px 70px;
+
+    color: #000;
+    text-decoration: none;
+}
+td {
+    background-color: #CCC;
+}
+form {
+    width: 400px;
+}
+form fieldset label input {
+    width: 300px;
+}
+form fieldset#RadioButtonInput label input {
+    width: 20px;
+}
+form fieldset label span.nStuError {
+    display: none;
+    font-size: .8rem;
+    color: red;
+    text-shadow: #000 0 0 8px;
+}
+#list-btns-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0 0 0;
+}
+#list-btns-container form {
+    width: 200px;
+    margin: 0 .5rem;
+}
+#left-btn-prev, #right-btn-next {
+    padding: 1rem 0;
+    width: 200px;
+    font-size: 1rem;
+    border-radius: .6rem;
+    background-color: #06B;
+    border: none;
+}
+#left-btn-prev:hover, #right-btn-next:hover {
+    background-color: blue;
+    color: white;
+}
+#left-btn-prev:active, #right-btn-next:active {
+    background-color: black;
+    color: white;
+}
+#popupStudent {
+    display: none;
+    position: absolute;
+    z-index: 1000;
+    left: 50%;
+    top: 10%;
+    margin-left: -200px;
+    width: 400px;
+    border: 1px solid black;
+    padding: 10px;
+    background: white;
+}
+#popupCloseContainer {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}

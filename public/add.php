@@ -14,7 +14,7 @@
     $pdoStatementSession = $pdo -> query($sqlSession);
     if ($pdoStatementSession === false)
     {
-        echo '<pre>'.print_r($pdo->errorInfo(), true).'</pre>';
+        echo '<pre>'.print_r($pdo -> errorInfo(), true).'</pre>';
         exit;
     }
     else

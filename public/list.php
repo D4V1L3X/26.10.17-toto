@@ -32,7 +32,7 @@
         LIMIT :offset, 5
     ';
     $pdoStatement = $pdo->prepare($sql);
-    $pdoStatement -> bindValue( ':offset', $offset, PDO::PARAM_INT);
+    $pdoStatement -> bindValue( ':offset', isset($offset) ? $offset : '0', PDO::PARAM_INT);
     $execQuery = $pdoStatement -> execute();
     if ($execQuery === false)
     {

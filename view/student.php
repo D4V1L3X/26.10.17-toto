@@ -1,25 +1,23 @@
-
-
 <form>
     <label>
         Student ID:<br>
-        <input type='text' value='<?= $resStu['stu_id'] ?>' readonly >
+        <input type='text' value='<?= $resStu['stu_id'] ?>' readonly>
     </label><br><br>
     <label>
         Lastname:<br>
-        <input type='text' value='<?= $resStu['stu_lastname'] ?>' readonly >
+        <input type='text' value='<?= $resStu['stu_lastname'] ?>' readonly>
     </label><br><br>
     <label>
         Firstname:<br>
-        <input type='text' value='<?= $resStu['stu_firstname'] ?>' readonly >
+        <input type='text' value='<?= $resStu['stu_firstname'] ?>' readonly>
     </label><br><br>
     <label>
         Email:<br>
-        <input type='text' value='<?= $resStu['stu_email'] ?>' readonly >
+        <input type='text' value='<?= $resStu['stu_email'] ?>' readonly>
     </label><br><br>
     <label>
         Birthdate:<br>
-        <input type='text' value='<?= $resStu['stu_birthdate'] ?>' readonly >
+        <input type='text' value='<?= $resStu['stu_birthdate'] ?>' readonly>
     </label><br><br>
     <label>
         Age:<br>
@@ -31,14 +29,17 @@
     </label><br><br>
     <label>
         Friendliness:<br>
-        <input type='text' value='<?= $resStu['stu_friendliness'] ?>' readonly >
+        <input type='text' value='<?= $resStu['stu_friendliness'] ?>' readonly>
     </label><br><br>
     <label>
         Session #:<br>
-        <input type='text' value='<?= $resStu['ses_number'] ?>' readonly >
+        <input type='text' value='<?= $resStu['ses_number'] ?>' readonly>
     </label><br><br>
     <label>
         Session Name:<br>
-        <input type='text' value='<?= $resStu['tra_name'] ?>' readonly >
+        <input type='text' value='<?= $resStu['tra_name'] ?>' readonly>
     </label>
 </form>
+<div id='popupCloseContainer'>
+    <button id='popupClose'>Close</button>
+</div>
