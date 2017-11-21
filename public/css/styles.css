@@ -4,6 +4,17 @@ body {
     display: flex;
     justify-content: center;
 }
+
+div#flex-container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin: 2rem 0 5rem 0;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+/**************************/
 ul {
     list-style-type: none;
 }
@@ -27,9 +38,12 @@ ul li a:hover, th a:hover {
     background-color: #000;
     color: #FFF;
 }
+
 ul li a:hover {
     color: #F00;
 }
+
+/**************************/
 table {
     border: 2px solid black;
 }
@@ -51,6 +65,7 @@ table th a {
 td {
     background-color: #CCC;
 }
+
 form {
     width: 400px;
 }
@@ -62,10 +77,11 @@ form fieldset#RadioButtonInput label input {
 }
 form fieldset label span.nStuError {
     display: none;
-    font-size: .8rem;
+    font-size: 1.2rem;
     color: red;
     text-shadow: #000 0 0 8px;
 }
+
 #list-btns-container {
     width: 100%;
     display: flex;

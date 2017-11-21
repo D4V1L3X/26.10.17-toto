@@ -40,6 +40,3 @@
         <input type='text' value='<?= $resStu['tra_name'] ?>' readonly>
     </label>
 </form>
-<div id='popupCloseContainer'>
-    <button id='popupClose'>Close</button>
-</div>

@@ -4,9 +4,17 @@
     <head>
         <meta charset="UTF-8">
         <title>26.10.2017 - Toto Project</title>
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <!-- My css -->
         <link rel="stylesheet" href="./css/styles.css">
+        <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.2.1.min.js" type="text/javascript"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <!-- My JS -->
         <script src="./js/scripts.js" type="text/javascript"></script>
+        <!-- I need to leave this JS part here, because I modified it through php, and i still need to revert that -->
         <script>
             function years()
             {
@@ -14,7 +22,7 @@
                 var years = document.getElementById("years");
                 var thisYear = (new Date()).getFullYear();
                 var max = thisYear-30;
-                var output = "<option <?= isset($formInvalid) && !empty($_POST['nStuBirthdateY']) ? '' : 'selected' ; ?> disabled>-- Year --</option>";
+                var output = "<option value=''<?= isset($formInvalid) && !empty($_POST['nStuBirthdateY']) ? '' : 'selected' ; ?> disabled>-- Year --</option>";
 
                 var selected = '';
                 //P
@@ -40,9 +48,8 @@
             {
                 //I
                 var month = document.getElementById("months");
-                output += "<option value='" + i +"'" + selected + ">" + i +"</option>";
                 var max = 12;
-                var output = "<option <?= isset($formInvalid) && !empty($_POST['nStuBirthdateM']) ? '' : 'selected' ; ?> disabled>-- Month --</option>";
+                var output = "<option value=''<?= isset($formInvalid) && !empty($_POST['nStuBirthdateM']) ? '' : 'selected' ; ?> disabled>-- Month --</option>";
 
                 var selected = '';
                 //P
@@ -69,7 +76,7 @@
                 //I
                 var days = document.getElementById("days");
                 var index = days.selectedIndex;
-                var output = "<option <?= isset($formInvalid) && !empty($_POST['nStuBirthdateD']) ? '' : 'selected' ; ?> disabled>-- Day --</option>";
+                var output = "<option value=''<?= isset($formInvalid) && !empty($_POST['nStuBirthdateD']) ? '' : 'selected' ; ?> disabled>-- Day --</option>";
 
                 var selected = '';
                 //P
