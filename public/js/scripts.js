@@ -12,18 +12,25 @@ $(document).ready(
                     {
                         stuId
                     },
-                    dataType : 'html'
+                    dataType : 'json'
                 }
             ).done(
                 function(answer)
                 {
-                    $('#popupStudent').html(answer).show();
-                    $('#popupClose').on('click',
-                        function()
-                        {
-                            $('#popupStudent').hide();
-                        }
+                    $('#stuDetailsRow').html(
+                        '<td>' + answer['stu_id'] + '</td>' +
+                        '<td>' + answer['stu_lastname'] + '</td>' +
+                        '<td>' + answer['stu_firstname'] + '</td>' +
+                        '<td>' + answer['stu_email'] + '</td>' +
+                        '<td>' + answer['stu_birthdate'] + '</td>' +
+                        '<td>' + answer['stu_age'] + '</td>' +
+                        '<td>' + answer['cit_name'] + '</td>' +
+                        '<td>' + answer['stu_friendliness'] + '</td>' +
+                        '<td>' + answer['ses_number'] + '</td>' +
+                        '<td>' + answer['tra_name'] + '</td>'
                     );
+                    $('#exampleModal').modal('show');
+
                     console.log('Success');
                 }
             ).fail(
@@ -122,19 +129,19 @@ $(document).ready(
             }
         );
 
-        $('#newStu input[name="nStuLastname"]').on('focus',
+        $('input[name="nStuLastname"]').on('focus',
             function()
             {
                 $('#lNameError').hide();
             }
         );
-        $('#newStu input[name="nStuFirstname"]').on('focus',
+        $('input[name="nStuFirstname"]').on('focus',
             function()
             {
                 $('#fNameError').hide();
             }
         );
-        $('#newStu input[name="nStuEmail"]').on('focus',
+        $('input[name="nStuEmail"]').on('focus',
             function()
             {
                 $('#emailError').hide();

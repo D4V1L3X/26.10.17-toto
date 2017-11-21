@@ -4,7 +4,7 @@
         require_once __DIR__ . '/../../inc/config.php';
 
         $sql = "
-            SELECT *
+            SELECT *, stu_birthdate as stu_age
             FROM student
             LEFT OUTER JOIN city on student.city_cit_id = city.cit_id
             LEFT OUTER JOIN session on student.session_ses_id = session.ses_id
@@ -20,8 +20,11 @@
         {
             $resStu = $pdoStatement -> fetch(PDO::FETCH_ASSOC);
 
-            $stuCalcAge = (new DateTime(date('Y-m-d', strtotime($resStu['stu_birthdate'])))) -> diff(new DateTime(date('Y-m-d'))) -> format('%Y');
+            $resStu['stu_age'] = (new DateTime(date('Y-m-d', strtotime($resStu['stu_birthdate'])))) -> diff(new DateTime(date('Y-m-d'))) -> format('%Y');
 
-            return include '../../view/student.php';
+            $json = json_encode($resStu, JSON_PRETTY_PRINT);
+
+            echo $json;
+            // return include '../../view/student.php';
         }
     }
